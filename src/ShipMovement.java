@@ -28,7 +28,7 @@ public class ShipMovement implements KeyListener {
     @Override
     public void keyPressed(KeyEvent ke) {
         int code = ke.getKeyCode();
-        System.out.println("Key Pressed code:\t" + code);
+        //System.out.println("Key Pressed code:\t" + code);
         if (code == 37)
         {
             System.out.println("left key pressed");
@@ -53,7 +53,7 @@ public class ShipMovement implements KeyListener {
                 s.spacePanel.setLocation(x+s.SPEED, y);
             }
         }
-        /*
+        
         if (code == 38)
         {
             System.out.println("up key pressed");
@@ -72,14 +72,12 @@ public class ShipMovement implements KeyListener {
             int y = s.spacePanel.getY();
             System.out.println("down key pressed");
             System.out.println(x + "," + y);
-            int shipH = s.spacePanel.getHeight();
-            int maxY = s.main.getHeight();
             if (y+s.SPEED <= 370)
             {
                 s.spacePanel.setLocation(x, y+s.SPEED);
             }
         }
-        */
+        
     }
 
     @Override
