@@ -72,7 +72,7 @@ public class ShipMovement implements KeyListener {
             int y = s.spacePanel.getY();
             System.out.println("down key pressed");
             System.out.println(x + "," + y);
-            if (y+s.SPEED <= 370)
+            if (y+s.SPEED <= 578)
             {
                 s.spacePanel.setLocation(x, y+s.SPEED);
             }
