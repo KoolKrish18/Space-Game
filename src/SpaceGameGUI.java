@@ -24,7 +24,8 @@ public final class SpaceGameGUI extends JFrame {
     JPanel spacePanel;
     JPanel enemyPanel;
     //JPanel [] enemyPanel = new JPanel[];
-    JPanel [] starPanel;
+    JPanel[] starPanel;
+    JPanel gamePanel;
     ShipMovement hnd;
     final int SPEED;
 
@@ -41,23 +42,31 @@ public final class SpaceGameGUI extends JFrame {
         spacePanel = new JPanel();
         enemyPanel = new JPanel();
         starPanel = new JPanel[30];
+        gamePanel = new JPanel();
         //starPanel[1] = starPanel1;
         spacePanel.setSize(100, 100);        
         enemyPanel.setSize(120, 120);
+        gamePanel.setSize(500, 700);    
         //starPanel[1].setSize(20, 20);
-        //main.setContentPane(new JLabel(new ImageIcon("bakgroun.png")));
-        main.getContentPane().setBackground(Color.black);
+        main.setContentPane(new JLabel(new ImageIcon("bakgroun.png")));
+        //main.getContentPane().setBackground(Color.black);
         JLabel ship = new JLabel(new ImageIcon("playerrocket (resize).png"));
         JLabel asteroid = new JLabel (new ImageIcon("asteroid(resize).png"));
+        JLabel over = new JLabel (new ImageIcon("gameover.jpg"));
         enemyPanel.add(asteroid);
         spacePanel.add(ship);
+        gamePanel.add(over);
         enemyPanel.setOpaque(false);
+        gamePanel.setVisible(false);
+        gamePanel.setBackground(Color.black);
         enemyPanel.setLocation(100, 0);
         spacePanel.setLocation(190, 578);
         spacePanel.setOpaque(false);
         //spacePanel.setBackground(Color.black);
         main.add(spacePanel);
         main.add(enemyPanel);
+        main.add(gamePanel);
+                
         main.setSize(500, 700);
         main.setVisible(true);
         main.setResizable(false);
@@ -71,7 +80,7 @@ public final class SpaceGameGUI extends JFrame {
         
         while(y<700){
             try {
-                enemyPanel.setLocation(ran, y);
+                enemyPanel.setLocation(190, 578);
                 
                 Thread.sleep(40);
                 y = y+SPEED;
@@ -83,7 +92,17 @@ public final class SpaceGameGUI extends JFrame {
             } catch (InterruptedException ex) {
                 Logger.getLogger(SpaceGameGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
+            if (spacePanel.getX() == enemyPanel.getX() && spacePanel.getY() == enemyPanel.getY()) {
+                gamePanel.setVisible(true);
+                System.out.println("feyuqe");
+            }
+            else{
+                gamePanel.setVisible(false);
+            }
         }
+        
+
+        
         
 
                 //main.repaint();
