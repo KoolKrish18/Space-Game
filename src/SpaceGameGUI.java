@@ -23,8 +23,8 @@ public final class SpaceGameGUI extends JFrame {
     JFrame main;
     JPanel spacePanel;
     JPanel enemyPanel;
-    //JPanel [] enemyPanel = new JPanel[];
-    JPanel[] starPanel;
+    //JPanel [] enPanel = new JPanel[6];
+    JPanel[] starPanel = new JPanel[6];
     JPanel gamePanel;
     ShipMovement hnd;
     final int SPEED;
@@ -41,11 +41,13 @@ public final class SpaceGameGUI extends JFrame {
         main.setLayout(null);
         spacePanel = new JPanel();
         enemyPanel = new JPanel();
-        starPanel = new JPanel[30];
+ 
         gamePanel = new JPanel();
+        //enPanel[1] = spacePanel;
+        //enPanel[1].setSize(20, 20);
         //starPanel[1] = starPanel1;
         spacePanel.setSize(100, 100);        
-        enemyPanel.setSize(120, 120);
+        enemyPanel.setSize(80, 80);
         gamePanel.setSize(500, 700);    
         //starPanel[1].setSize(20, 20);
         main.setContentPane(new JLabel(new ImageIcon("bakgroun.png")));
@@ -66,7 +68,7 @@ public final class SpaceGameGUI extends JFrame {
         main.add(spacePanel);
         main.add(enemyPanel);
         main.add(gamePanel);
-                
+        
         main.setSize(500, 700);
         main.setVisible(true);
         main.setResizable(false);
@@ -76,11 +78,20 @@ public final class SpaceGameGUI extends JFrame {
         int maxX = main.getWidth() - 81;
         int y = -100;
         int ran = (int)Math.round(Math.random()*maxX+1);
-        
+        int [] rany = new int[6];
+        //System.out.println(spacePanel.getWidth() + "  qdeqw");
+        for(int i = 0; i < 6; i++){
+            starPanel[i] = enemyPanel;
+            rany[i] = (int)Math.round(Math.random()*maxX+1);
+            
+        }
+        main.add(starPanel[1]);
         
         while(y<700){
             try {
-                enemyPanel.setLocation(190, 578);
+                enemyPanel.setLocation(ran, y);
+                
+                starPanel[1].setLocation(300, y);
                 
                 Thread.sleep(40);
                 y = y+SPEED;
@@ -91,10 +102,21 @@ public final class SpaceGameGUI extends JFrame {
                 }
             } catch (InterruptedException ex) {
                 Logger.getLogger(SpaceGameGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            boolean candy = false;
+            boolean bandy = false;
+            
+            if (enemyPanel.getX() + enemyPanel.getWidth() - 50 >= spacePanel.getX() /*+ enemyPanel.getWidth() */ && spacePanel.getX() >= enemyPanel.getX() - 50){
+                candy = true;
             }
-            if (spacePanel.getX() == enemyPanel.getX() && spacePanel.getY() == enemyPanel.getY()) {
+            
+            if (enemyPanel.getY() + enemyPanel.getHeight() - 10 >= spacePanel.getY() /*+ enemyPanel.getWidth() */ && spacePanel.getY() >= enemyPanel.getY()){
+                bandy = true;
+            }            
+            
+            if (candy == true && bandy == true) {
                 gamePanel.setVisible(true);
-                System.out.println("feyuqe");
+                System.out.println("print");
             }
             else{
                 gamePanel.setVisible(false);
@@ -119,7 +141,7 @@ public final class SpaceGameGUI extends JFrame {
 
     /**
      *
-     * @param g
+     * @pa
      */
 
     
